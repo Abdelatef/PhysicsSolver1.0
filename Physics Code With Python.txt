@@ -1,0 +1,103 @@
+
+def main():
+    while True:
+        print("Select a physics problem to solve:")
+        print("1. Coulomb's Law")
+        print("2. Electric Current")
+        print("3. Electric Potential")
+        print("4. Electric Field")
+        print("5. Ohm's Law")
+        print("Enter your choice (1/2/3/4/5): ")
+
+        choice = int(input())
+
+        if choice == 1:
+            solve_coulombs_law()
+        elif choice == 2:
+            solve_electric_current()
+        elif choice == 3:
+            solve_electric_potential()
+        elif choice == 4:
+            solve_electric_field()
+        elif choice == 5:
+            solve_ohms_law()
+        else:
+            print("Invalid choice!")
+
+        print("\nCalling main again...\n")
+
+
+def solve_coulombs_law():
+    print("\n*** Coulomb's Law Solver ***")
+    q1 = float(input("Enter the value of Q1 (charge 1): "))
+    q2 = float(input("Enter the value of Q2 (charge 2): "))
+    r = float(input("Enter the distance between charges (r): "))
+    k = 8.99e9
+    force = (k * abs(q1) * abs(q2)) / (r * r)
+    print(f"The force between charges is: {force} Newtons")
+    force_direction_x = k * q1 * q2 / (r * r * r)
+    if force_direction_x > 0:
+        print("in +ve x direction")
+    else:
+        print("in -ve x direction")
+
+
+def solve_electric_current():
+    print("\n*** Electric Current Charge Finder ***")
+    charge = float(input("Enter the value of charge (Q): "))
+    time = float(input("Enter the time taken (t): "))
+    charge_result = charge * time
+    print(f"The electric charge is: {charge_result} C")
+
+
+def solve_electric_potential():
+    print("\n*** Electric Potential Solver ***")
+    charge = float(input("Enter the charge (in Coulombs): "))
+    distance = float(input("Enter the distance from the charge (in meters): "))
+    electric_potential = calculate_electric_potential(charge, distance)
+    print(f"The electric potential at a distance of {distance} meters from the charge is: {electric_potential} volts")
+
+
+def calculate_electric_potential(charge, distance):
+    k = 8.99e9
+    return k * charge / distance
+
+
+def solve_electric_field():
+    print("\n*** Electric Field Solver ***")
+    charge = float(input("Enter the value of charge (Q): "))
+    distance = float(input("Enter the distance from the charge (r): "))
+    k = 9e9
+    electric_field = k * abs(charge) / (distance * distance)
+    print(f"The electric field is: {electric_field} Newtons/Coulomb")
+
+
+def solve_ohms_law():
+    print("\n*** Ohm's Law Solver ***")
+    print("Choose what to calculate:")
+    print("1. Resistance")
+    print("2. Current")
+    print("3. Voltage")
+    ohms_choice = int(input("Enter your choice (1/2/3): "))
+
+    if ohms_choice == 1:
+        voltage = float(input("Enter the value of voltage (V): "))
+        current = float(input("Enter the value of current (I): "))
+        resistance = voltage / current
+        print(f"The resistance is: {resistance} Ohms")
+    elif ohms_choice == 2:
+        volts = float(input("Enter the value of voltage (V): "))
+        ohms = float(input("Enter the value of resistance (R): "))
+        amps = volts / ohms
+        print(f"The current is: {amps} Amperes")
+    elif ohms_choice == 3:
+        amperes = float(input("Enter the value of current (I): "))
+        ohms_resistance = float(input("Enter the value of resistance (R): "))
+        volts_result = amperes * ohms_resistance
+        print(f"The voltage is: {volts_result} Volts")
+    else:
+        print("Invalid choice!")
+
+
+if __name__ == "__main__":
+    main()

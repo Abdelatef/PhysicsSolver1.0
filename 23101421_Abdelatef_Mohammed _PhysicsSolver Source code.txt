@@ -1,0 +1,141 @@
+import java.util.Scanner;
+public class PhysicsSolver {
+    public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Select a physics problem to solve:");
+    System.out.println("1. Coulomb's Law");
+    System.out.println("2. Electric Current");
+    System.out.println("3. Electric Potential");
+    System.out.println("4. Electric Field");
+    System.out.println("5. Ohm's Law");
+    System.out.print("Enter your choice (1/2/3/4/5): ");
+    int choice = scanner.nextInt();
+    switch (choice) {
+    case 1:
+    solveCoulombsLaw();
+    break;
+    case 2:
+    solveElectricCurrent();
+    break;
+    case 3:
+    solveElectricPotential();
+    break;
+    case 4:
+    solveElectricField();
+    break;
+    case 5:
+    solveOhmsLaw();
+    break;
+    default:
+    System.out.println("Invalid choice!");
+   
+        }
+        
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(" ");
+  System.out.println("Calling main again...");
+        main(args);   }
+    // Solver for Coulomb's Law
+    public static void solveCoulombsLaw() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n*** Coulomb's Law Solver ***");
+        System.out.print("Enter the value of Q1 (charge 1): ");
+              double q1 = scanner.nextDouble();
+        System.out.print("Enter the value of Q2 (charge 2): ");
+             double q2 = scanner.nextDouble();
+              System.out.print("Enter the distance between charges (r): ");
+        double r = scanner.nextDouble();
+            double k = 8.99e9; 
+        double force =( k * Math.abs(q1) * Math.abs(q2)) / (r * r);
+        System.out.println("The force between charges is: " + force + " Newtons");
+                  double forceDirectionX = k * q1 * q2 / (r * r * r); 
+        if (forceDirectionX>0) {
+            System.out.println("in +ve x direction");
+        } else{
+            System.out.println("in -ve x direction");
+        } 
+    } 
+    // Solver for Electric Current
+    public static void solveElectricCurrent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n*** Electric Current Charge Finder ***");
+        System.out.print("Enter the value of charge (Q): ");
+        double Current = scanner.nextDouble();
+        System.out.print("Enter the time taken (t): ");
+        double time = scanner.nextDouble();
+        double Charge = Current * time;
+        System.out.println("The electric Charge is: " + Charge + " C");
+    }
+    // Solver for Electric Potential
+    public static void solveElectricPotential() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the charge (in Coulombs): ");
+        double charge = scanner.nextDouble();
+        System.out.print("Enter the distance from the charge (in meters): ");
+        double distance = scanner.nextDouble();
+        double electricPotential = calculateElectricPotential(charge, distance);
+        System.out.println("The electric potential at a distance of " + distance + " meters from the charge is: " + electricPotential + " volts");
+        scanner.close();
+    }
+    public static double calculateElectricPotential(double charge, double distance) {
+        final double k = 8.99e9; 
+        return k * charge / distance;
+    }
+
+    // Solver for Electric Field
+    public static void solveElectricField() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n*** Electric Field Solver ***");
+        System.out.print("Enter the value of charge (Q): ");
+        double charge = scanner.nextDouble();
+        System.out.print("Enter the distance from the charge (r): ");
+        double distance = scanner.nextDouble();
+        double k = 9e9; 
+        double electricField = k * Math.abs(charge) / (distance * distance);
+
+        System.out.println("The electric field is: " + electricField + " Newtons/Coulomb");
+    }
+    // Solve Ohm's Law (Resistance, Current, Voltage)
+    public static void solveOhmsLaw() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n*** Ohm's Law Solver ***");
+        System.out.println("Choose what to calculate:");
+        System.out.println("1. Resistance");
+        System.out.println("2. Current");
+        System.out.println("3. Voltage");
+        System.out.print("Enter your choice (1/2/3): ");
+        int ohmsChoice = scanner.nextInt();
+        switch (ohmsChoice) {
+            case 1:
+         System.out.print("Enter the value of voltage (V): ");
+         double voltage = scanner.nextDouble();
+       System.out.print("Enter the value of current (I): ");
+         double current = scanner.nextDouble();
+       double resistance = voltage / current;
+     System.out.println("The resistance is: " + resistance + " Ohms");
+   break;
+            case 2:
+          System.out.print("Enter the value of voltage (V): ");
+        double volts = scanner.nextDouble();
+        System.out.print("Enter the value of resistance (R): ");
+         double ohms = scanner.nextDouble();
+      double amps = volts / ohms;
+     System.out.println("The current is: " + amps + " Amperes");
+     break;
+            case 3:
+System.out.print("Enter the value of current (I): ");
+      double amperes = scanner.nextDouble();
+  System.out.print("Enter the value of resistance (R): ");
+     double ohmsResistance = scanner.nextDouble();
+  double voltsResult = amperes * ohmsResistance;
+ System.out.println("The voltage is: " + voltsResult + " Volts");
+ break;
+            default:
+                System.out.println("Invalid choice!");
+        }
+    }
+}
